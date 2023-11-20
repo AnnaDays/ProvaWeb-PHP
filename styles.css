@@ -1,0 +1,511 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap');
+
+body{
+    background-color: #004aad;
+}
+.inicio {
+    display: flex;
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.9);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 60%;
+    height: 90vh;
+    transform: translate(-50%, -50%);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.imagem{
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.ancoras{
+    width: 50%;
+    background: #86b6e6;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 1px solid #86b6e6;
+    border-radius: 15px;
+}
+.ini{
+    font-family: montserrat;
+    color: rgb(255, 255, 255);
+    font-size: 18px;
+    float: right;
+    position: relative;
+    font-weight: bold;
+    display: flex center;
+}
+.market{
+    height: 220px;
+    float: left;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+.market:hover{
+    transform: scale(1.1);
+}
+a{
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+}
+.cadUser{
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 310px;
+    height: 390px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.cadUser h2{
+    text-align: center;
+    font-size: 30px;
+}
+.cadUser p{
+    font-size: 12px;
+}
+.cadUser a:hover{
+    color: rgb(36, 110, 135);
+}
+input{
+    border-color: rgba(0, 0, 0, 0.278);
+    padding: 10px;
+    width: 280px;
+    font-family: montserrat;
+    font-size: 15px;
+    border-radius: 8px;
+}
+#submit {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 15px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 305px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+}
+#submit:hover{
+    background-color: rgb(20, 118, 210);
+}
+.buscaUser{
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 310px;
+    height: 430px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.buscaProd{
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 310px;
+    height: 510px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.criaProd{
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 310px;
+    height: 380px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.criaProd h2{
+    text-align: center;
+    font-size: 30px;
+}
+.criaProd p{
+    font-size: 12px;
+}
+
+#submitBotao {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 15px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 305px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+}
+#submitBotao:hover{
+    background-color: rgb(20, 118, 210);
+}
+#buscarpp {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 14px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 99px;
+    height: 39px;
+    padding: 10px;
+    cursor: pointer;
+}
+#buscarpp:hover{
+    background-color: rgb(20, 118, 210);
+}
+#uppd {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 14px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 99px;
+    height: 39px;
+    padding: 10px;
+    cursor: pointer;
+}
+#uppd:hover{
+    background-color: rgb(20, 118, 210);
+}
+#delete {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 14px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 99px;
+    height: 39px;
+    padding: 10px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+#delete:hover{
+    background-color: rgb(20, 118, 210);
+}
+.buscaProd p{
+    font-size: 12px;
+}
+.buscaProd a:hover{
+    color: rgb(36, 110, 135);
+}
+.buscaUser p{
+    font-size: 12px;
+}
+.buscaUser a:hover{
+    color: rgb(36, 110, 135);
+}
+.all{
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 260px;
+    height: 350px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+} 
+.all h3{
+    text-align: center;
+    font-size: 20px;
+}
+.listuser{
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 260px;
+    height: 350px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+} 
+.listuser h3{
+    text-align: center;
+    font-size: 20px;
+}
+#getAllButton {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 14px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+    height: 35px;
+    padding: 10px;
+    cursor: pointer;
+}
+#getAllButton:hover{
+    background-color: rgb(20, 118, 210);
+}
+.listuser p{
+    font-size: 12px;
+}
+.listuser a:hover{
+    color: rgb(36, 110, 135);
+}
+.all p{
+    font-size: 12px;
+}
+.all a:hover{
+    color: rgb(36, 110, 135);
+}
+.card {
+    width: 380px;
+    height: 500px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    padding: 20px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.analu {
+    width: 240px;
+    height: 250px;
+    border-radius: 50%;
+    margin: 0 auto 10px;
+    display: block;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+} 
+.analu:hover{
+    transform: scale(1.1);
+}
+.pp p{
+    font-size: 12px;
+}
+.pp a:hover{
+    color: rgb(36, 110, 135);
+} 
+#botinicio {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 15px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 305px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    transform: scale(1);
+    transition: transform 0.3s ease-in-out;
+}
+#botinicio:hover{
+    background-color: rgb(75, 177, 255);
+    transform: scale(1.1);
+    box-shadow: 0 8px 12px rgba(68, 173, 254, 0.2);
+}
+@media screen and (max-width: 1400px) {
+    .market {
+        width: 120%;
+    }
+    .ancoras{
+        width: 60%;
+    }
+    .ini{
+        font-size: 14px;
+    }
+    .inicio{
+        width: 60%;
+    }
+    #botinicio, .botao {
+        width: 60%;
+        font-size: 16px;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .market{
+        width: 110%;
+    }
+    .ancoras{
+        width: 60%;
+    }
+    .inicio{
+        width: 60%;
+    }
+    .ini{
+        font-size: 12px;
+    }
+    #botinicio, .botao {
+        width: 60%;
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width: 1000px) {
+    .market {
+        width: 105%;
+    }
+    .ancoras{
+        width: 60%;
+    }
+    .ini{
+        font-size: 9px;
+    }
+    .inicio{
+        width: 60%;
+    }
+    #botinicio, .botao {
+        width: 50%;
+        font-size: 11px;
+    }
+}
+
+@media screen and (max-width: 800px) {
+    .responsivo {
+        width: 60%;
+    }
+    .market {
+        width: 100%;
+    }
+    .ancoras{
+        width: 60%;
+    }
+    .ini{
+        font-size: 8px;
+    }
+    .inicio{
+        width: 60%;
+    }
+    #botinicio, .botao {
+        width: 40%;
+        font-size: 8px;
+    }
+}
+#mapid {
+    height: 300px;
+    width: 100%;
+}
+.vinc{
+    border-radius: 15px;
+    background-color: rgba(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 300px;
+    height: 280px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+} 
+.vinc h2{
+    text-align: center;
+    font-size: 20px;
+}
+.vinc p{
+    font-size: 12px;
+}
+.vinc a:hover{
+    color: rgb(36, 110, 135);
+}
+#submitButton {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 15px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 305px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+}
+#submitButton:hover{
+    background-color: rgb(20, 118, 210);
+}
+.voltar {
+    font-family: montserrat;
+    color: white;
+    font-size: 15px;
+}
+.logUser{
+    border-radius: 15px;
+    background-color: rgb(255, 255, 255, 0.9);
+    color: rgb(0, 0, 0);
+    font-family: montserrat;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 60px;
+    width: 300px;
+    height: 300px;
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+}
+.logUser h2{
+    text-align: center;
+    font-size: 30px;
+}
+.logUser p{
+    font-size: 12px;
+}
+.logUser a:hover{
+    color: rgb(36, 110, 135);
+}
+#login {
+    background-color: rgb(50, 145, 233);
+    color: white;
+    font-size: 15px;
+    font-family: montserrat;
+    border: none;
+    border-radius: 5px;
+    width: 305px;
+    height: 40px;
+    padding: 10px;
+    cursor: pointer;
+}
+#login:hover{
+    background-color: rgb(20, 118, 210);
+}

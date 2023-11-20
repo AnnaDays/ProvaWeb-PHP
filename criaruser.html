@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulário de Usuário</title>
+    <script src="js/valida.js"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/leaflet.css">
+</head>
+<body>
+    <div class="cadUser">
+    <form id="userForm">
+        <h2>Cadastro</h2>
+        <label for="Nome">Nome:</label>
+        <br>
+        <input type="text" id= "nome" placeholder="Digite seu Nome" name="nome" required>
+        <br><br>
+        <label for="Email">E-mail:</label>
+        <br>
+        <input type="text" id="email" placeholder="Digite seu E-mail"name="email" required>
+        <br><br>
+        <label for="Senha">Senha:</label>
+        <br>
+        <input type="password" id="senha" placeholder="Digite sua Senha"name="senha" required>
+        <br><br>
+        <details> <summary>Cadastrar Endereço</summary>
+            <label>Cep:
+                <input name="cep" type="text" id="cep" value="" size="10" maxlength="9"
+                       onblur="pesquisacep(this.value);" /></label><br />
+                <label>Rua:
+                <input name="rua" type="text" id="rua" size="60" /></label><br />
+                <label>Bairro:
+                <input name="bairro" type="text" id="bairro" size="40" /></label><br />
+                <label>Cidade:
+                <input name="cidade" type="text" id="cidade" size="40" /></label><br />
+                <label>Estado:
+                <input name="uf" type="text" id="uf" size="2" /></label><br />
+                <label>IBGE:
+                <input name="ibge" type="text" id="ibge" size="8" /></label><br />
+                <div id="mapid"></div>
+        </details>
+        <button type="button" id="submit">Criar Usuário</button>
+        <br>
+        <p>Quer voltar para a Página Inicial? <a href="./menu.html">Clique Aqui</a></p>
+    </form>
+    </div>
+    <script src="js/cep.js"></script>
+    <script src="./script.js"></script>
+<script src="js/createUser.js"></script> 
+<script src="js/leaflet.js"></script>
+</body>
+</html>

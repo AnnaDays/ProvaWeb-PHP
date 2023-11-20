@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt_BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="js/valida.js"></script>
+    <title>Gerenciamento de Usuários</title>
+</head>
+<body>
+    <div class="buscaProd">
+    <h3>Buscar Produto</h3>
+    <label for="getProdId">ID do Produto:</label>
+    <input type="number" placeholder="Digite o ID do Produto" id="getProdId">
+    <br><br>
+    <button id="buscarpp" onclick="getProd()">Buscar</button>
+
+    <h3>Gerenciar Produto</h3>
+    <label for="inpuNome">Nome do Produto:</label>
+    <input type="text" placeholder="Digite o nome do Produto" id="inputNome">
+    <br><br>
+    <label for="inpuNome">Valor do Produto:</label>
+    <input type="text" placeholder="Digite o valor do Produto" id="inputValor">
+    <br><br>
+    <label for="inpuNome">Quantidade do Produto:</label>
+    <input type="number" placeholder="Digite a quantidade do Produto" id="inputQtd">
+    <br><br>
+    <button id="uppd" onclick="updateProd()">Atualizar</button>
+    <button id= "delete" onclick="deleteProd()">Excluir</button>
+    <p>Quer voltar para a Página Inicial? <a href="./menu.html">Clique Aqui</a></p>
+</div>
+
+<script src="js/getProd.js"></script>
+<script src="js/updateProd.js"></script>
+<script src="js/deleteProd.js"></script>
+</body>
+</html>
