@@ -1,7 +1,8 @@
 function deleteProd() {
     const prodId = document.getElementById("getProdId").value;
     fetch('/backend/produtos.php?id=' + prodId, {
-        method: 'DELETE'
+        method: 'POST',
+        body: JSON.stringify({acao: "Deletar"})
     })
     .then(response => {
         if (!response.ok) {

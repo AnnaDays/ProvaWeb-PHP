@@ -1,7 +1,8 @@
 function deleteUser() {
     const userId = document.getElementById("getUserId").value;
     fetch('/backend/usuarios.php?id=' + userId, {
-        method: 'DELETE'
+        method: 'POST',
+        body: JSON.stringify({acao: "Deletar"})
     })
     .then(response => {
         if (!response.ok) {

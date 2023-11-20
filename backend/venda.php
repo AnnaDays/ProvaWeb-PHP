@@ -5,6 +5,12 @@ require "../vendor/autoload.php";
 
 use App\Controller\VendaController;
 
+header('Content-Type: application/json');
+header('Access-Control-Allow-Origin: * ' );
+header('Access-Control-Allow-Methods: OPTIONS, GET, POST, PUT, DELETE');
+header('Access-Control-Allow-Headers: Content-Type');
+header('Cache-Control: no-cache, no-store, must-revalidate');
+
 $vendaController = new VendaController();
 
 $body = json_decode(file_get_contents('php://input'), true);
