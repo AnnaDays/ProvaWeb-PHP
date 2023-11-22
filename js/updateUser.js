@@ -4,11 +4,11 @@ function updateUser() {
     const userEmail = document.getElementById("inputEmail").value;
     const usuarioAtualizado = {
         nome: userName,
-        email: userEmail
+        email: userEmail,
+        acao: "Atualizar"
     };
-
     fetch('/backend/usuarios.php?id=' + userId, { 
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },

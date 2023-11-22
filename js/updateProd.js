@@ -6,11 +6,12 @@ function updateProd() {
     const produtoAtualizado = {
         nome: prodName,
         preco: prodValor,
-        quantidade: prodQtd
+        quantidade: prodQtd,
+        acao: "Atualizar"
     };
 
     fetch('/backend/produtos.php?id=' + prodId, { 
-        method: 'PUT',
+        method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
