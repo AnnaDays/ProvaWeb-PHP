@@ -31,7 +31,7 @@ CREATE TABLE `endereco` (
   `uf` varchar(10) DEFAULT NULL,
   `iduser` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -40,9 +40,27 @@ CREATE TABLE `endereco` (
 
 LOCK TABLES `endereco` WRITE;
 /*!40000 ALTER TABLE `endereco` DISABLE KEYS */;
-INSERT INTO `endereco` VALUES (1,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',27),(2,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',28),(3,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',29),(4,'','','','','',30),(5,'','','','','',31),(6,'','','','','',32),(7,'','','','','',33),(8,'','','','','',34),(9,'','','','','',35),(10,'','','','','',36),(11,'','','','','',37),(12,'','','','','',38);
+INSERT INTO `endereco` VALUES (1,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',27),(2,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',28),(3,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',29),(4,'','','','','',30),(5,'','','','','',31),(6,'','','','','',32),(7,'','','','','',33),(8,'','','','','',34),(9,'','','','','',35),(10,'','','','','',36),(11,'','','','','',37),(12,'','','','','',38),(13,'','','','','',39),(14,'','','','','',40),(15,'','','','','',41);
 /*!40000 ALTER TABLE `endereco` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `before_endereco_delete` BEFORE DELETE ON `endereco` FOR EACH ROW BEGIN
+   INSERT INTO log_endereco(id, cep, rua, bairro, cidade, uf, iduser)
+   VALUES (OLD.id, OLD.cep, OLD.rua, OLD.bairro, OLD.cidade, OLD.uf, OLD.iduser);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `log_endereco`
@@ -60,7 +78,7 @@ CREATE TABLE `log_endereco` (
   `uf` varchar(10) DEFAULT NULL,
   `iduser` tinyint DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -69,8 +87,27 @@ CREATE TABLE `log_endereco` (
 
 LOCK TABLES `log_endereco` WRITE;
 /*!40000 ALTER TABLE `log_endereco` DISABLE KEYS */;
+INSERT INTO `log_endereco` VALUES (16,'03948000','Rua Senador Maynarde Gomes','Jardim Nove de Julho','São Paulo','SP',42);
 /*!40000 ALTER TABLE `log_endereco` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_log_endereco_update` AFTER UPDATE ON `log_endereco` FOR EACH ROW BEGIN
+   INSERT INTO endereco(id, cep, rua, bairro, cidade, uf, iduser)
+   VALUES (NEW.id, NEW.cep, NEW.rua, NEW.bairro, NEW.cidade, NEW.uf, NEW.iduser);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `log_produtos`
@@ -82,9 +119,9 @@ DROP TABLE IF EXISTS `log_produtos`;
 CREATE TABLE `log_produtos` (
   `id` tinyint DEFAULT NULL,
   `nome` varchar(8) DEFAULT NULL,
-  `preco` decimal(3,2) DEFAULT NULL,
-  `quantidade` tinyint DEFAULT NULL,
-  `criado` varchar(19) DEFAULT NULL
+  `preco` int DEFAULT NULL,
+  `quantidade` int DEFAULT NULL,
+  `criado` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -94,32 +131,27 @@ CREATE TABLE `log_produtos` (
 
 LOCK TABLES `log_produtos` WRITE;
 /*!40000 ALTER TABLE `log_produtos` DISABLE KEYS */;
+INSERT INTO `log_produtos` VALUES (19,'Repolhoo',3,1,'2023-11-22 22:52:39');
 /*!40000 ALTER TABLE `log_produtos` ENABLE KEYS */;
 UNLOCK TABLES;
-
---
--- Table structure for table `log_token`
---
-
-DROP TABLE IF EXISTS `log_token`;
-/*!40101 SET @saved_cs_client     = @@character_set_client */;
-/*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `log_token` (
-  `id` varchar(0) DEFAULT NULL,
-  `id_user` varchar(0) DEFAULT NULL,
-  `token` varchar(0) DEFAULT NULL,
-  `tempo` varchar(0) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-/*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `log_token`
---
-
-LOCK TABLES `log_token` WRITE;
-/*!40000 ALTER TABLE `log_token` DISABLE KEYS */;
-/*!40000 ALTER TABLE `log_token` ENABLE KEYS */;
-UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_log_produtos_update` AFTER UPDATE ON `log_produtos` FOR EACH ROW BEGIN
+   INSERT INTO produtos(id, nome, preco, quantidade, criado)
+   VALUES (NEW.id, NEW.nome, NEW.preco, NEW.quantidade, NEW.criado);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `log_users`
@@ -133,11 +165,11 @@ CREATE TABLE `log_users` (
   `nome` varchar(14) DEFAULT NULL,
   `email` varchar(25) DEFAULT NULL,
   `senha` varchar(60) DEFAULT NULL,
-  `criado` varchar(19) DEFAULT NULL,
+  `criado` datetime DEFAULT CURRENT_TIMESTAMP,
   `perfilid` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -146,8 +178,27 @@ CREATE TABLE `log_users` (
 
 LOCK TABLES `log_users` WRITE;
 /*!40000 ALTER TABLE `log_users` DISABLE KEYS */;
+INSERT INTO `log_users` VALUES (41,'AninhaGatinha','anagostosa@gmail.com','$2y$10$WQ.cEYf2rbYkH/A5.dUGo.yV8PFWV3lxPlRxAooLkV0ejHPSMU0pW','2023-11-22 22:38:22',NULL);
 /*!40000 ALTER TABLE `log_users` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_log_update` AFTER UPDATE ON `log_users` FOR EACH ROW BEGIN
+   INSERT INTO users(id, nome, email, senha, criado, perfilid)
+   VALUES (NEW.id, NEW.nome, NEW.email, NEW.senha, NEW.criado, NEW.perfilid);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `log_vendas`
@@ -160,7 +211,7 @@ CREATE TABLE `log_vendas` (
   `id` tinyint DEFAULT NULL,
   `id_usuario` tinyint DEFAULT NULL,
   `id_produto` tinyint DEFAULT NULL,
-  `data_cadastro` varchar(0) DEFAULT NULL
+  `data_cadastro` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -172,6 +223,24 @@ LOCK TABLES `log_vendas` WRITE;
 /*!40000 ALTER TABLE `log_vendas` DISABLE KEYS */;
 /*!40000 ALTER TABLE `log_vendas` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `after_log_vendas_update` AFTER UPDATE ON `log_vendas` FOR EACH ROW BEGIN
+   INSERT INTO vendas(id, id_usuario, id_produto, data_cadastro)
+   VALUES (NEW.id, NEW.id_usuario, NEW.id_produto, NEW.data_cadastro);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `perfil`
@@ -254,9 +323,9 @@ CREATE TABLE `produtos` (
   `nome` varchar(8) DEFAULT NULL,
   `preco` int DEFAULT NULL,
   `quantidade` int DEFAULT NULL,
-  `criado` varchar(19) DEFAULT NULL,
+  `criado` datetime DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -265,9 +334,27 @@ CREATE TABLE `produtos` (
 
 LOCK TABLES `produtos` WRITE;
 /*!40000 ALTER TABLE `produtos` DISABLE KEYS */;
-INSERT INTO `produtos` VALUES (14,'Melão',2,2,'2023-10-03 01:18:21'),(16,'Melancia',2,4,'2023-10-25 04:07:48'),(17,'Damasco',1,1,'2023-10-25 18:50:44');
+INSERT INTO `produtos` VALUES (16,'Melancia',2,4,'2023-10-25 04:07:48'),(17,'Damasco',1,1,'2023-10-25 18:50:44'),(18,'Geleia',11,1,'2023-11-22 22:30:22');
 /*!40000 ALTER TABLE `produtos` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `before_produtos_delete` BEFORE DELETE ON `produtos` FOR EACH ROW BEGIN
+   INSERT INTO log_produtos(id, nome, preco, quantidade, criado)
+   VALUES (OLD.id, OLD.nome, OLD.preco, OLD.quantidade, OLD.criado);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Temporary view structure for view `produtos_por_usuario`
@@ -342,11 +429,11 @@ CREATE TABLE `users` (
   `nome` varchar(14) DEFAULT NULL,
   `email` varchar(25) DEFAULT NULL,
   `senha` varchar(60) DEFAULT NULL,
-  `criado` varchar(19) DEFAULT NULL,
+  `criado` datetime DEFAULT CURRENT_TIMESTAMP,
   `perfilid` int DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `email` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=39 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -355,9 +442,27 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (36,'Ana Luiza Dias','analuizadias389@gmail.com','$2y$10$BOhkl6TZuVZbPkW4gS6daujpDmT7gttJu6uAiCWBqqdEnsz5jzYrW','2023-11-07 00:47:04',1),(37,'Sarah','ss@gmail.com','$2y$10$j9vEhuxjbOc/Cz7yAnAt2.0kl5ZAd6QpUAXV61Oesila.4ki4bMQe','2023-11-07 00:49:34',2),(38,'Ana Luiza Dias','aa@gmail.com','$2y$10$NzZUUgSZpzHRkOwWJa5dk.Niv2IckTQVTXNGervRy4SbBKdBQqOPK','2023-11-08 02:29:41',3);
+INSERT INTO `users` VALUES (36,'Ana Luiza Dias','analuizadias389@gmail.com','$2y$10$BOhkl6TZuVZbPkW4gS6daujpDmT7gttJu6uAiCWBqqdEnsz5jzYrW','2023-11-07 00:47:04',2),(37,'Sarah','ss@gmail.com','$2y$10$j9vEhuxjbOc/Cz7yAnAt2.0kl5ZAd6QpUAXV61Oesila.4ki4bMQe','2023-11-07 00:49:34',2),(38,'Ana Luiza Dias','aa@gmail.com','$2y$10$NzZUUgSZpzHRkOwWJa5dk.Niv2IckTQVTXNGervRy4SbBKdBQqOPK','2023-11-08 02:29:41',3),(39,'userX','x1@gmail.com','$2y$10$fb/sj4xJbOjdrWF/.GU8bOIxdaczZwGPI9wnElM0U3bpK.YWRp/y2',NULL,1),(40,'userY','y2@gmail.com','$2y$10$M/ywucjrSFHg6Ij52y5WH.XghbjH2AMtxLxxG5faD3jj.lb09zY6W',NULL,2),(42,'Sandra','sandrinha@gmail.com','$2y$10$FH7F8V3cXWdkGuxd1HC4yuZr6WIcGLR9nhAiluiua.iihGvQAkCwS','2023-11-22 22:48:53',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `before_user_delete` BEFORE DELETE ON `users` FOR EACH ROW BEGIN
+   INSERT INTO log_users(id, nome, email, senha, criado, perfilid)
+   VALUES (OLD.id, OLD.nome, OLD.email, OLD.senha, OLD.criado, OLD.perfilid);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Table structure for table `vendas`
@@ -370,7 +475,7 @@ CREATE TABLE `vendas` (
   `id` tinyint DEFAULT NULL,
   `id_usuario` tinyint DEFAULT NULL,
   `id_produto` tinyint DEFAULT NULL,
-  `data_cadastro` varchar(0) DEFAULT NULL
+  `data_cadastro` datetime DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -380,8 +485,27 @@ CREATE TABLE `vendas` (
 
 LOCK TABLES `vendas` WRITE;
 /*!40000 ALTER TABLE `vendas` DISABLE KEYS */;
+INSERT INTO `vendas` VALUES (NULL,40,14,'2023-11-23 01:25:18'),(NULL,40,14,'2023-11-23 01:25:21'),(NULL,36,18,'2023-11-23 01:25:36'),(NULL,39,16,'2023-11-23 01:25:43');
 /*!40000 ALTER TABLE `vendas` ENABLE KEYS */;
 UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb3 */ ;
+/*!50003 SET character_set_results = utf8mb3 */ ;
+/*!50003 SET collation_connection  = utf8mb3_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_AUTO_VALUE_ON_ZERO' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 TRIGGER `before_vendas_delete` BEFORE DELETE ON `vendas` FOR EACH ROW BEGIN
+   INSERT INTO log_vendas(id, id_usuario, id_produto, data_cadastro)
+   VALUES (OLD.id, OLD.id_usuario, OLD.id_produto, OLD.data_cadastro);
+END */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 
 --
 -- Dumping events for database 'banco'
@@ -423,7 +547,7 @@ DELIMITER ;
 /*!50001 SET @saved_col_connection     = @@collation_connection */;
 /*!50001 SET character_set_client      = utf8mb3 */;
 /*!50001 SET character_set_results     = utf8mb3 */;
-/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 SET collation_connection      = utf8mb3_general_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
 /*!50001 VIEW `produtos_por_usuario` AS select `u`.`id` AS `id`,`u`.`nome` AS `nome`,count(`v`.`id_produto`) AS `quantidade_produtos` from (`users` `u` left join `vendas` `v` on((`u`.`id` = `v`.`id_usuario`))) group by `u`.`id` */;
@@ -440,4 +564,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-11-22 12:28:19
+-- Dump completed on 2023-11-22 22:59:57
